@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function EditNote(props) {
-    const [showForm, setShowForm] = useState(false);
     const [title, setTitle] = useState(props.title);
     const [desc, setDesc] = useState(props.body);
 
@@ -17,7 +16,7 @@ function EditNote(props) {
         const note = {
             title: title,
             body: desc,
-            id: props.id
+            _id: props.id
         };
         props.onEdit(note);
     }

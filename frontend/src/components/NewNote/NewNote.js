@@ -40,10 +40,10 @@ function NewNote(props) {
                     onChange={changeDescHandler}
                 />
 
-                <button onClick={() => addNote()}>Dodaj notakę</button>
+                <button onClick={() => addNote()}>Zapisz</button>
             </div>
         ) : (
-            <button onClick={() => setShowForm(true)}>Nowa notatka</button>
+            <button className="newNote" onClick={() => setShowForm(true)}>Nowa notatka</button>
         )
     );
 }

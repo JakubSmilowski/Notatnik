@@ -15,7 +15,6 @@ function Note(props) {
         });
     }
 
-
     return (
         <div className='note'>
             <p onClick={toggleDesc}>{props.title}</p>
@@ -23,7 +22,8 @@ function Note(props) {
                 <div className="description">{props.body}</div>
             )}
             <button onClick={eidtHandler}>edytuj</button>
-            <button className="delete"
+            <button
+                className="delete"
                 onClick={() => props.onDelete(props.id)}>usuń</button>
         </div>
     );

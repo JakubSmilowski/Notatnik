@@ -1,16 +1,16 @@
 const Note = require('../../db/models/note');
 
-class noteActions {
+class NoteActions {
 
     async saveNote(req, res) {
         const title = req.body.title;
         const body = req.body.body;
 
         let note;
+
         try {
             note = new Note({ title, body });
             await note.save();
-
         } catch (err) {
             return res.status(422).json({ message: err.message });
         }
@@ -18,27 +18,22 @@ class noteActions {
         res.status(201).json(note);
     }
 
-    //Pobieranie wszystkich notatek
+    // pobieranie notatek
     async getAllNotes(req, res) {
-        let doc;
-
-        try {
-            doc = await Note.find({})
-        } catch (err) {
-            return res.status(500).json({ message: err.message });
-        }
+        const doc = await Note.find({});
 
         res.status(200).json(doc);
     }
 
-    //Pobieranie notatki
+    // pobieranie notatki
     async getNote(req, res) {
         const id = req.params.id;
         const note = await Note.findOne({ _id: id });
+
         res.status(200).json(note);
     }
 
-    //aktualizowanie
+    // aktualizowanie notatki
     async updateNote(req, res) {
         const id = req.params.id;
         const title = req.body.title;
@@ -51,7 +46,8 @@ class noteActions {
 
         res.status(201).json(note);
     }
-    //Usowanie notatki
+
+    // usuwanie notatki
     async deleteNote(req, res) {
         const id = req.params.id;
         await Note.deleteOne({ _id: id });
@@ -60,4 +56,6 @@ class noteActions {
     }
 
 }
-module.exports = new noteActions();
+
+
+module.exports = new NoteActions();

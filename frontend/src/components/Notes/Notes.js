@@ -5,6 +5,8 @@ import NewNote from '../NewNote/NewNote';
 import Modal from 'react-modal';
 import EditNote from '../EditNote/EditNote';
 import axios from '../../axios';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 class Notes extends React.Component {
     constructor(props) {
@@ -32,8 +34,7 @@ class Notes extends React.Component {
 
     async deleteNote(id) {
         const notes = [...this.state.notes]
-            .filter(note => note.id !== id);
-
+            .filter(note => note._id !== id);
         await axios.delete('/notes/' + id);
         this.setState({ notes });
     }
@@ -41,11 +42,15 @@ class Notes extends React.Component {
     async addNote(note) {
         const notes = [...this.state.notes];
         // add to backend
-        const res = await axios.post('/notes', note);
-        const newNote = res.data;
-        // add to frontend
-        notes.push(newNote);
-        this.setState({ notes });
+        try {
+            const res = await axios.post('/notes', note);
+            const newNote = res.data;
+            // add to frontend
+            notes.push(newNote);
+            this.setState({ notes });
+        } catch (err) {
+            NotificationManager.error(err.response.data.message);
+        }
     }
 
     async editNote(note) {
@@ -75,24 +80,25 @@ class Notes extends React.Component {
     }
 
     render() {
-
-
         return (
             <div>
-                <p>Moje notatki: </p>
+                <NotificationContainer />
+
+                <p>Moje notatki:</p>
 
                 <NewNote
                     onAdd={(note) => this.addNote(note)} />
 
                 <Modal
                     isOpen={this.state.showEditModal}
-                    contentLabel="Edutuj notatke" >
+                    contentLabel="Edutuj notatkę" >
                     <EditNote
                         title={this.state.editNote.title}
                         body={this.state.editNote.body}
                         id={this.state.editNote._id}
                         onEdit={note => this.editNote(note)} />
                     <button
+                        className='cancelButton'
                         onClick={() => this.toggleModal()}>Anuluj</button>
                 </Modal>
 

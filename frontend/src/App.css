@@ -1,5 +1,5 @@
 body {
-  background-color: #03205a;
+  background-color: #292929;
 }
 
 p {
@@ -12,10 +12,10 @@ input {
   padding: .375rem .75rem;
   font-size: 1rem;
   line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
+  color: #524f4f;
+  background-color: #ffffff;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: 1px solid #ffffff;
   border-radius: .25rem;
   margin-bottom: 10px;
 }
@@ -36,7 +36,7 @@ input {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@ input {
 }
 
 .App-link {
-  color: #61dafb;
+  color: #57f4ff;
 }
 
 @keyframes App-logo-spin {

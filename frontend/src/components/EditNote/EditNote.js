@@ -35,7 +35,7 @@ function EditNote(props) {
                 onChange={changeDescHandler}
             />
 
-            <button onClick={() => editNote()}>Zapisz notakę</button>
+            <button onClick={() => editNote()}>Zapisz</button>
         </div>
 
     );
